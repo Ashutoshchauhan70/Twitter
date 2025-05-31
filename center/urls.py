@@ -20,10 +20,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib.auth.urls import views as auth_views
 from django.contrib.auth.views import LoginView
+from django.views.generic import RedirectView 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('tweet/', include('tweet.urls')),
     path('accounts/login/', LoginView.as_view(template_name='login.html'), name='login'),
     path('accounts/', include('django.contrib.auth.urls')),
+      path('', RedirectView.as_view(url='/tweet/')),
 
 ] + static(settings.MEDIA_URL ,document_root=settings.MEDIA_ROOT)
